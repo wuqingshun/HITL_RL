@@ -12,7 +12,7 @@ In this repository, we open source a framework called Human-in-the-Loop Adaptive
 * matplotlib==3.3.4 （draw training results）
 ```
 
-# Project Structure
+# Structure
 
 ```
 -dataset/
