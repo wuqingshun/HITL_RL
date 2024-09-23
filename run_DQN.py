@@ -1,5 +1,4 @@
 from env_CD import *
-#进度条
 from tqdm import tqdm
 import random
 import torch
@@ -109,7 +108,6 @@ def human_simulation(win, env):
     '''
     probability_distribution = np.array([env.human_reject_rate, 1-env.human_reject_rate])
     action = np.random.choice([0, 1], p = probability_distribution.ravel())
-    time.sleep(env.human_decision_time)
     if action==0:
         reject(win,env)
     else:
@@ -118,7 +116,6 @@ def human_simulation(win, env):
     env.human_reject_rate-=0.01
     if env.human_reject_rate<0:
         env.human_reject_rate=1
-    env.human_decision_time+=random.randint(1,10)/50
 
 def human_decision(env,divide_flag,current_time):
     '''
@@ -156,8 +153,7 @@ def human_decision(env,divide_flag,current_time):
         x_task.append(float(task.lng))
         y_task.append(float(task.lat))
         txt_task.append(task.deadline-current_time)
-
-
+        
     ax.scatter(x_worker, y_worker, s=10, c='r', marker="o", alpha=1, lw=2, label='Worker')  
     ax.scatter(x_task, y_task, s=10, c='g', marker="^", alpha=1, lw=2, label='Task')  
     ax.set_title("Current Temporal and Spatial Distribution", color='black', fontsize=12)
