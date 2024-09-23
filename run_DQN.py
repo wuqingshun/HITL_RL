@@ -100,22 +100,6 @@ def reject(win,env):
     win.quit()
     # time.sleep(1)
 
-def human_simulation(win, env):
-    '''
-    :param win:
-    :param env:
-    :return:
-    '''
-    probability_distribution = np.array([env.human_reject_rate, 1-env.human_reject_rate])
-    action = np.random.choice([0, 1], p = probability_distribution.ravel())
-    if action==0:
-        reject(win,env)
-    else:
-        confirm(win,env)
-
-    env.human_reject_rate-=0.01
-    if env.human_reject_rate<0:
-        env.human_reject_rate=1
 
 def human_decision(env,divide_flag,current_time):
     '''
@@ -188,8 +172,6 @@ def human_decision(env,divide_flag,current_time):
 
  
     s_time=time.time()
-    
-    human_simulation(win, env)
     
     e_time = time.time()
     time.sleep(0.1)
